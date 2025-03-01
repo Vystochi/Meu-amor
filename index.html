@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu amor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        window.onload = () => {
+            // Função para verificar a resposta
+            const pergunta = prompt('Quem é você?');
+            const container = document.querySelector('.container');
+            const mensagemErro = document.createElement('p');
+            
+            if (pergunta !== 'Laura vistochi machado' && pergunta !== 'Laura machado') {
+                mensagemErro.textContent = 'Você não deveria estar aqui!';
+                mensagemErro.style.color = 'red';
+                container.innerHTML = '';  // Limpa o conteúdo do container
+                container.appendChild(mensagemErro);
+                return;  // Interrompe o carregamento do conteúdo
+            }
+
+            // Animação de corações flutuantes
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '💖';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${7 + Math.random() * 3}s`;
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 10000);
+            }, 1000);
+
+            // Contagem cronometrada desde 14 de setembro de 2024
+            const startDate = new Date('2024-09-14T00:00:00');
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startDate;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('contador').textContent = `❤Juntos há ${days} dias, ${hours}h ${minutes}m ${seconds}s!❤`;
+            }, 1000);
+
+            // Trocar a imagem principal ao clicar em uma imagem da galeria
+            const galeriaFotos = document.querySelectorAll('.gallery img');
+            const imagemPrincipal = document.getElementById('imagem-principal');
+
+            galeriaFotos.forEach(imagem => {
+                imagem.addEventListener('click', (event) => {
+                    imagemPrincipal.src = event.target.src;
+                });
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>❤Eu te amo❤</h1>
+        <audio controls>
+            <source src="theMusic.mp3" type="audio/mp3">
+        </audio>        
+        <div class="image-container">
+            <img id="imagem-principal" src="unnamed.jpg" alt="Imagem principal">
+        </div>
+
+        <p class="decoracao">Muito obrigado por ser essa pessoa perfeita e incrivel que você é comigo!!!</p>
+
+        <div class="album">
+            <h3>Apenas algumas fotinhas pra você lembrar do quanto eu sou apaixonado por vc.</h3>
+            <div class="gallery">
+                <img src="unnamed (1).jpg" alt="Foto 1">
+                <img src="unnamed (4).jpg" alt="Foto 2">
+                <img src="unnamed (2).jpg" alt="Foto 3">
+                <img src="unnamed (5).jpg" alt="Foto 4">
+                <img src="unnamed (3).jpg" alt="Foto 5">
+                <img src="unnamed.jpg" alt="Foto 6">
+            </div>
+        </div>
+        <p id="contador"></p>
+    </div>
+</body>
+</html>
